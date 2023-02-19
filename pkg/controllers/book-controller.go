@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"book_store_api/pkg/models"
+	"book_store_api/pkg/utils"
 	"encoding/json"
 	"fmt"
 	"net/http"
@@ -38,5 +39,15 @@ func GetBook(w http.ResponseWriter, r *http.Request) {
 	res, _ := json.Marshal(bookDetails)
 	w.Header().Set("Content-Type", "pkglication/json")
 	w.WriteHeader(http.StatusOK)
+	w.Write(res)
+}
+
+func CreateBook(w http.ResponseWriter, r *http.Request) {
+	createBook :=&models.Book{}
+	utils.ParseBody(r, createBook)
+	b := createBook.CreateBook()
+	res, _ := json.Marshal(b)
+	w.Header().Set("Content-Type", "pkglication/json")
+	w.WriteHeader(http.StatusCreated)
 	w.Write(res)
 }
