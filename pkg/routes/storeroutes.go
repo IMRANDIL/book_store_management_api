@@ -1,6 +1,8 @@
 package routes
 
 import (
+	"book_store_api/pkg/controllers"
+
 	"github.com/gorilla/mux"
 )
 
