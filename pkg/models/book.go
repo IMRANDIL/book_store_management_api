@@ -47,3 +47,12 @@ func GetBookById(Id int64) (*Book, *gorm.DB){
 
 }
 
+
+func DeleteBook(Id int64) Book {
+	var book Book
+	db.Where("ID=?", Id).Delete(book)
+
+	return book
+
+}
+
