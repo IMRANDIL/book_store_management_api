@@ -1,6 +1,9 @@
 package config
 
-import "github.com/jinzhu/gorm"
+import (
+	_ "github.com/go-sql-driver/mysql"
+	"github.com/jinzhu/gorm"
+)
 
 
 
