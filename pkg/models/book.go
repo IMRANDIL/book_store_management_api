@@ -1,6 +1,10 @@
 package models
 
-import "github.com/jinzhu/gorm"
+import (
+	"book_store_api/pkg/config"
+
+	"github.com/jinzhu/gorm"
+)
 
 
 
@@ -13,5 +17,10 @@ type Book struct {
 	Author string `json:"author"`
 	Publication string `json:"publication"`
 
+}
+
+func init () {
+	config.Connect()
+	db = config.GetDB()
 }
 
