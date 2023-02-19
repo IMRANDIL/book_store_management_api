@@ -2,6 +2,7 @@ package main
 
 import (
 	"book_store_api/pkg/routes"
+	"fmt"
 	"log"
 	"net/http"
 
@@ -15,4 +16,5 @@ func main () {
 	routes.RegisterBookStoreRoutes(r)
 	http.Handle("/",r)
 	log.Fatal(http.ListenAndServe("localhost:8000",r))
+	fmt.Println("Server started at port :8000")
 }
