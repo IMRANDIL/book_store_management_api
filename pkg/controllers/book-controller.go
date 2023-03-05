@@ -43,7 +43,7 @@ func GetBook(w http.ResponseWriter, r *http.Request) {
 }
 
 func CreateBook(w http.ResponseWriter, r *http.Request) {
-	createBook :=&models.Book{}
+	createBook := &models.Book{}
 	if err := utils.ParseBody(r, createBook); err != nil {
         http.Error(w, err.Error(), http.StatusBadRequest)
         return
