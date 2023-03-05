@@ -74,7 +74,10 @@ func DeleteBook(w http.ResponseWriter, r *http.Request) {
 
 func UpdateBook(w http.ResponseWriter, r *http.Request) {
 	var updateBook = &models.Book{}
-	utils.ParseBody(r, updateBook)
+	if err := utils.ParseBody(r, updateBook); err != nil {
+        http.Error(w, err.Error(), http.StatusBadRequest)
+        return
+    }
 	params := mux.Vars(r)
 	bookId := params["bookId"]
 	ID, err := strconv.ParseInt(bookId, 0, 0)
