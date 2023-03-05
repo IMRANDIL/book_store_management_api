@@ -20,3 +20,17 @@ func ParseBody(r *http.Request, x interface{}) error {
 
 	return nil
 }
+
+func (b *Book) Validate() error {
+    if len(strings.TrimSpace(b.Name)) == 0 {
+        return errors.New("Name is required")
+    }
+    if len(strings.TrimSpace(b.Author)) == 0 {
+        return errors.New("Author is required")
+    }
+    if len(strings.TrimSpace(b.Publication)) == 0 {
+        return errors.New("Publication is required")
+    }
+    return nil
+}
+
