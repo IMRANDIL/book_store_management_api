@@ -44,7 +44,14 @@ func GetBook(w http.ResponseWriter, r *http.Request) {
 
 func CreateBook(w http.ResponseWriter, r *http.Request) {
 	createBook :=&models.Book{}
-	utils.ParseBody(r, createBook)
+	if err := utils.ParseBody(r, createBook); err != nil {
+        http.Error(w, err.Error(), http.StatusBadRequest)
+        return
+    }
+    if err := createBook.Validate(); err != nil {
+        http.Error(w, err.Error(), http.StatusBadRequest)
+        return
+    }
 	b := createBook.CreateBook()
 	res, _ := json.Marshal(b)
 	w.WriteHeader(http.StatusCreated)
